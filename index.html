@@ -5,8 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Tic-Tac-Toe</title>
+    <script src="script.js" defer></script>
 </head>
 <body>
-  <script src="./script.js"></script>
+  <div class="container">
+    <div class="scores">
+      <div class="playerX">
+        <h5>PLAYER X</h5>
+      </div>
+      <div class="draw">
+        <h5>DRAW</h5>
+
+      </div>
+      <div class="playerO">
+        <h5>PLAYER O</h5>
+
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="cell" data-index="0"></div>
+      <div class="cell" data-index="1"></div>
+      <div class="cell" data-index="2"></div>
+      <div class="cell" data-index="3"></div>
+      <div class="cell" data-index="4"></div>
+      <div class="cell" data-index="5"></div>
+      <div class="cell" data-index="6"></div>
+      <div class="cell" data-index="7"></div>
+      <div class="cell" data-index="8"></div>
+    </div>
+
+    <div class="message"></div>
+    <button class="reset-button">Reiniciar</button>
+  </div>
 </body>
 </html>

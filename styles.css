@@ -1,3 +1,50 @@
 body{
-  background-color: rgb(30, 30, 30);
+  background-color: #5A1E76;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.container{
+  background-color: #2B0040;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+.scores{
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: 1;
+  gap: 12px;
+}
+.scores>.playerO{
+  background-color: #F2B137;
+  border-radius: 1rem;
+
+}
+.scores>.playerX{
+  background-color: #31C3BD;
+  border-radius: 1rem;
+
+}
+.scores>.draw{
+  background-color: #BCDBF9;
+  border-radius: 1rem;
+
+}
+
+
+
+
+.board{
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 12px;
+  margin: 20px auto;
+}
+.cell{
+  background-color: #43115B ;
+  border-radius: 1rem;
+
 }

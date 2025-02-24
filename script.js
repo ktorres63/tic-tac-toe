@@ -92,17 +92,22 @@ const gameController = (function () {
   return {playTurn}
 })();
 
-// Simulación de un juego
-// Simulación de un juego
-gameController.playTurn(0); // Humano juega en la posición 0
-gameBoard.printBoard();
-gameController.playTurn(4); // Computadora juega en la posición 4
-gameBoard.printBoard();
-gameController.playTurn(1); // Humano juega en la posición 1
-gameBoard.printBoard();
-gameController.playTurn(5); // Computadora juega en la posición 5
-gameBoard.printBoard();
-gameController.playTurn(2); // Humano juega en la posición 2 (gana)
+const displayController = (function (){
+  const cells = document.querySelectorAll(".cell");
+  const message = document.querySelector(".message");
+  const resetButton = document.querySelector(".reset-button");
 
-// Imprimir el tablero después de cada movimiento
-gameBoard.printBoard();
+  const renderBoard = () =>{
+    const board = gameBoard.getBoard();
+    cells.forEach((cell, index) => {
+      cell.textContent = board[index]
+    })
+  }
+  return { renderBoard };
+
+
+})();
+
+
+// Inicializar el juego
+displayController.renderBoard();
