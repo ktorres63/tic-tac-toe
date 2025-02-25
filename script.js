@@ -64,6 +64,13 @@ const gameController = (function () {
 
   let currentPlayer = player1;
 
+  const scores ={
+    X:0,
+    O:0,
+    ties: 0
+  }
+
+
   const switchTurn = () =>{
     currentPlayer = currentPlayer === player1 ? player2 : player1;
   }
@@ -73,11 +80,16 @@ const gameController = (function () {
       gameBoard.update(position, currentPlayer.marker);
       if(gameBoard.checkWin()){
         console.log(`${currentPlayer.name} wins!`);
-        // reiniciar
+        scores[currentPlayer.marker]++;
+        displayController.updateScores(scores);
+        // displayController.
+
         gameBoard.reset();
         return;
       }
       if(gameBoard.checkTie()){
+        scores.ties++;
+        displayController.updateScores(scores);
         console.log("It's a tie");
         gameBoard.reset();
         return;
@@ -96,6 +108,13 @@ const displayController = (function (){
   const cells = document.querySelectorAll(".cell");
   const message = document.querySelector(".message");
   const resetButton = document.querySelector(".reset-button");
+  const scoreX = document.querySelector("#score-x");
+  const scoreO = document.querySelector("#score-o");
+  const scoreTies = document.querySelector("#score-ties");
+
+
+
+
 
   const renderBoard = () =>{
     const board = gameBoard.getBoard();
@@ -119,6 +138,13 @@ const displayController = (function (){
     message.textContent =text
   }
 
+  const updateScores = (scores) =>{
+    scoreX.textContent = scores.X
+    scoreO.textContent = scores.O
+    scoreTies.textContent = scores.ties
+
+  }
+
   const handleCellClick = (event) =>{
     const position = event.target.dataset.index;
     gameController.playTurn(position);
@@ -138,7 +164,7 @@ const displayController = (function (){
   })
 
 
-  return { renderBoard };
+  return { renderBoard, updateScores };
 
 
 })();

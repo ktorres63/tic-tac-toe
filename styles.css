@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&family=Press+Start+2P&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body{
-  font-family: Arial, sans-serif;
+  font-family: 'Press Start 2P', cursive;
   background-color: #5A1E76;
   display: flex;
   justify-content: center;
@@ -12,27 +19,48 @@ body{
   border-radius: 1rem;
   padding: 2rem;
 }
-.scores{
+
+.scoreboard {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: 1;
   gap: 12px;
+  font-size: 1.2rem;
 }
-.scores>.playerO{
+
+.score {
+  padding: 10px;
+  height: 90px;
+  background-color: #f0f0f0;
+  border-radius: 0.5rem;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: x-small;
+  font-weight: bold;
+}
+
+.score.o{
   background-color: #F2B137;
-  border-radius: 1rem;
-
 }
-.scores>.playerX{
+.score.x{
   background-color: #31C3BD;
-  border-radius: 1rem;
-
 }
-.scores>.draw{
+.score.draw{
   background-color: #BCDBF9;
-  border-radius: 1rem;
+}  
 
+.score #score-x{
+  font-size: large;
 }
+.score #score-ties{
+  font-size: large;
+}
+.score #score-o{
+  font-size: large;
+} 
 
 
 
