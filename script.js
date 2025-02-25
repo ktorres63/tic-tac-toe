@@ -59,8 +59,8 @@ const gameBoard = (function () {
 
 
 const gameController = (function () {
-  const player1 = Player("human", "X")
-  const player2 = Player("Computer", "O")
+  const player1 = Player("Player X", "X")
+  const player2 = Player("PLayer O", "O")
 
   let currentPlayer = player1;
 
@@ -73,9 +73,9 @@ const gameController = (function () {
       gameBoard.update(position, currentPlayer.marker);
       if(gameBoard.checkWin()){
         console.log(`${currentPlayer.name} wins!`);
+        // reiniciar
         gameBoard.reset();
         return;
-        // reiniciar
       }
       if(gameBoard.checkTie()){
         console.log("It's a tie");
@@ -100,14 +100,47 @@ const displayController = (function (){
   const renderBoard = () =>{
     const board = gameBoard.getBoard();
     cells.forEach((cell, index) => {
-      cell.textContent = board[index]
+      const cellContent = cell.querySelector(".filled");
+      if(board[index] == "O"){
+        cellContent.src = "assets/icon-o.svg";
+        cellContent.style.display = "block";
+      }
+      else if(board[index] == "X"){
+        cellContent.src = "assets/icon-x.svg";
+        cellContent.style.display = "block";
+      }
+      else{
+        cellContent.style.display = "none";
+      }
+      
     })
   }
+  const setMessage = (text) =>{
+    message.textContent =text
+  }
+
+  const handleCellClick = (event) =>{
+    const position = event.target.dataset.index;
+    gameController.playTurn(position);
+    renderBoard();
+  }
+  cells.forEach((cell) => {
+
+
+    const filledIcon = document.createElement("img");
+    filledIcon.src = "";
+    filledIcon.classList.add("filled");
+    cell.appendChild(filledIcon);
+    
+    cell.addEventListener("click", handleCellClick)
+
+  
+  })
+
+
   return { renderBoard };
 
 
 })();
 
-
-// Inicializar el juego
-displayController.renderBoard();
+gameBoard.printBoard()
