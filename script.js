@@ -60,7 +60,7 @@ const gameBoard = (function () {
 
 const gameController = (function () {
   const player1 = Player("Player X", "X")
-  const player2 = Player("PLayer O", "O")
+  const player2 = Player("Player O", "O")
 
   let currentPlayer = player1;
 
@@ -68,6 +68,14 @@ const gameController = (function () {
     X:0,
     O:0,
     ties: 0
+  }
+
+  const resetScores = () =>{
+    scores.X = 0;
+    scores.O = 0;
+    scores.ties = 0;
+    displayController.updateScores(scores);
+
   }
 
 
@@ -79,10 +87,12 @@ const gameController = (function () {
     if(gameBoard.isCellEmpty(position)){
       gameBoard.update(position, currentPlayer.marker);
       if(gameBoard.checkWin()){
+        displayController.setMessage(`${currentPlayer.name} wins!`)
+
         console.log(`${currentPlayer.name} wins!`);
+
         scores[currentPlayer.marker]++;
         displayController.updateScores(scores);
-        // displayController.
 
         gameBoard.reset();
         return;
@@ -91,30 +101,27 @@ const gameController = (function () {
         scores.ties++;
         displayController.updateScores(scores);
         console.log("It's a tie");
+        displayController.setMessage("It's a tie")
         gameBoard.reset();
         return;
       }
-      switchTurn(); // Cambiar al siguiente jugador
+      switchTurn(); 
 
     }
     else{
       console.log("cell is already taken");
     }
   }
-  return {playTurn}
+  return {playTurn, resetScores}
 })();
 
 const displayController = (function (){
   const cells = document.querySelectorAll(".cell");
-  const message = document.querySelector(".message");
+  const message = document.querySelector("#message-text");
   const resetButton = document.querySelector(".reset-button");
   const scoreX = document.querySelector("#score-x");
   const scoreO = document.querySelector("#score-o");
   const scoreTies = document.querySelector("#score-ties");
-
-
-
-
 
   const renderBoard = () =>{
     const board = gameBoard.getBoard();
@@ -131,7 +138,6 @@ const displayController = (function (){
       else{
         cellContent.style.display = "none";
       }
-      
     })
   }
   const setMessage = (text) =>{
@@ -163,10 +169,15 @@ const displayController = (function (){
   
   })
 
+  resetButton.addEventListener("click", () =>{
+    gameBoard.reset();
+    gameController.resetScores();
+    renderBoard();
+    setMessage("Game reset")
+  });
 
-  return { renderBoard, updateScores };
+
+  return { renderBoard, updateScores, setMessage};
 
 
 })();
-
-gameBoard.printBoard()

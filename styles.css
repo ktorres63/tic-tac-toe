@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +7,7 @@
 }
 
 body{
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Poppins", serif;
   background-color: #5A1E76;
   display: flex;
   justify-content: center;
@@ -15,17 +16,21 @@ body{
   margin: 0;
 }
 .container{
+  width: 500px;
   background-color: #2B0040;
   border-radius: 1rem;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 .scoreboard {
   display: grid;
   grid-template-columns: repeat(3, 100px);
-  grid-template-rows: 1;
-  gap: 12px;
   font-size: 1.2rem;
+  gap: 12px;
 }
 
 .score {
@@ -38,7 +43,7 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  font-size: x-small;
+  font-size: medium;
   font-weight: bold;
 }
 
@@ -53,13 +58,13 @@ body{
 }  
 
 .score #score-x{
-  font-size: large;
+  font-size: xx-large;
 }
 .score #score-ties{
-  font-size: large;
+  font-size: xx-large;
 }
 .score #score-o{
-  font-size: large;
+  font-size: xx-large;
 } 
 
 
@@ -70,7 +75,7 @@ body{
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
   gap: 12px;
-  margin: 20px auto;
+  margin-top: 20px;
 }
 .cell{
   background-color: #43115B ;
@@ -93,4 +98,37 @@ body{
 
 .cell .filled{
   display:none;
+}
+
+.reset-button {
+  border-radius: 0.5rem;
+  font-size: x-large;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+  height: 70px;
+}
+
+.message-box {
+  text-align: center;
+  position: relative;
+  display: inline-block; 
+}
+
+.message-box img {
+  margin-top: 20px;
+  display: block;
+  width: 100%; 
+  height: auto;
+}
+
+#message-text {
+  position: absolute;
+  top: 50%;  
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: large;
+  font-weight: bolder;
 }
